@@ -176,7 +176,13 @@ const Select = forwardRef(
         missingValues.length > 0
           ? missingValues.concat(selectOptions)
           : selectOptions;
-      return result.filter(opt => opt.value !== SELECT_ALL_VALUE);
+      return result.filter(opt => opt.value !== SELECT_ALL_VALUE)
+        .map(opt => {
+          return {
+            value: opt.value,
+            label: t(opt.label)
+          }
+        });
     }, [selectOptions, selectValue]);
 
     const enabledOptions = useMemo(
@@ -397,7 +403,7 @@ const Select = forwardRef(
     const selectAllLabel = useMemo(
       () => () =>
         // TODO: localize
-        `${SELECT_ALL_VALUE} (${formatNumber(
+        `${t(SELECT_ALL_VALUE)} (${formatNumber(
           NumberFormats.INTEGER,
           selectAllEligible.length,
         )})`,

@@ -308,7 +308,7 @@ export default function DateFilterLabel(props: DateFilterControlProps) {
       <Divider />
       <div>
         <div className="section-title">{t('Actual time range')}</div>
-        {validTimeRange && <div>{evalResponse}</div>}
+        {validTimeRange && <div>{t(evalResponse)}</div>}
         {!validTimeRange && (
           <IconWrapper className="warning">
             <Icons.ErrorSolidSmall iconColor={theme.colors.error.base} />
@@ -367,7 +367,7 @@ export default function DateFilterLabel(props: DateFilterControlProps) {
     >
       <Tooltip placement="top" title={tooltipTitle}>
         <DateLabel
-          label={actualTimeRange}
+          label={t(actualTimeRange)}
           isActive={show}
           isPlaceholder={actualTimeRange === NO_TIME_RANGE}
           data-test={DATE_FILTER_TEST_KEY.popoverOverlay}
@@ -382,7 +382,7 @@ export default function DateFilterLabel(props: DateFilterControlProps) {
       <Tooltip placement="top" title={tooltipTitle}>
         <DateLabel
           onClick={toggleOverlay}
-          label={actualTimeRange}
+          label={t(actualTimeRange)}
           isActive={show}
           isPlaceholder={actualTimeRange === NO_TIME_RANGE}
           data-test={DATE_FILTER_TEST_KEY.modalOverlay}

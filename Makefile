@@ -17,6 +17,7 @@
 
 # Python version installed; we need 3.8-3.11
 PYTHON=`command -v python3.11 || command -v python3.10 || command -v python3.9 || command -v python3.8`
+DOCKER_REPOSITORY="bluspark-release-nexus.consoneo.tech"
 
 .PHONY: install superset venv pre-commit
 
@@ -115,3 +116,21 @@ report-celery-beat:
 
 admin-user:
 	superset fab create-admin
+
+remove-node-modules:
+	sudo rm -rf superset-frontend/node_modules
+	sudo rm -rf superset-frontend/packages/*/node_modules
+	sudo rm -rf superset-frontend/plugins/*/node_modules
+
+build-for-nexus:
+	if ! [ $(version) ]; then echo "You need to specify a version\nUsage\n\tmake build-for-nexus version=<version>"; exit 1; fi
+	docker build --target lean -t "${DOCKER_REPOSITORY}/bluspark/superset:$(version)" --build-arg PY_VER="3.8.12" . --platform linux/amd64
+
+login-to-nexus:
+	docker login ${DOCKER_REPOSITORY}
+
+push-to-nexus:
+	if ! [ $(version) ]; then echo "You need to specify a version\nUsage\n\tmake build-for-nexus version=<version>"; exit 1; fi
+	docker push "${DOCKER_REPOSITORY}/bluspark/superset:$(version)"
+
+build-and-push-to-nexus: build-for-nexus login-to-nexus push-to-nexus

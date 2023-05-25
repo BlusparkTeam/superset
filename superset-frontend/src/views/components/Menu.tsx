@@ -35,6 +35,9 @@ import {
   MenuData,
 } from 'src/types/bootstrapTypes';
 import RightMenu from './RightMenu';
+import {
+  t,
+} from '@superset-ui/core';
 
 interface MenuProps {
   data: MenuData;
@@ -199,7 +202,7 @@ export function Menu({
       return (
         <DropdownMenu.Item key={label} role="presentation">
           <Link role="button" to={url}>
-            {label}
+            {t(label)}
           </Link>
         </DropdownMenu.Item>
       );
@@ -207,7 +210,7 @@ export function Menu({
     if (url) {
       return (
         <DropdownMenu.Item key={label}>
-          <a href={url}>{label}</a>
+          <a href={url}>{t(label)}</a>
         </DropdownMenu.Item>
       );
     }
@@ -225,9 +228,9 @@ export function Menu({
             return (
               <DropdownMenu.Item key={`${child.label}`}>
                 {child.isFrontendRoute ? (
-                  <Link to={child.url || ''}>{child.label}</Link>
+                  <Link to={child.url || ''}>{t(child.label)}</Link>
                 ) : (
-                  <a href={child.url}>{child.label}</a>
+                  <a href={child.url}>{t(child.label)}</a>
                 )}
               </DropdownMenu.Item>
             );
