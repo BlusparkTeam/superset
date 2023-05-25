@@ -200,7 +200,7 @@ export const renderSelectOptions = (options: SelectOptionsType) =>
     const { customLabel, ...optProps } = opt;
     return (
       <Option {...optProps} key={value} label={label} value={value}>
-        {isOptObject && customLabel ? customLabel : label}
+        {t(isOptObject && customLabel ? customLabel : label)}
       </Option>
     );
   });

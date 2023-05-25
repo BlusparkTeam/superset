@@ -17,7 +17,7 @@
  * under the License.
  */
 import React, { useState, useEffect } from 'react';
-import { styled, css, useTheme, SupersetTheme } from '@superset-ui/core';
+import { styled, css, useTheme, SupersetTheme, t } from '@superset-ui/core';
 import { debounce } from 'lodash';
 import { Global } from '@emotion/react';
 import { getUrlParam } from 'src/utils/urlUtils';
@@ -35,9 +35,6 @@ import {
   MenuData,
 } from 'src/types/bootstrapTypes';
 import RightMenu from './RightMenu';
-import {
-  t,
-} from '@superset-ui/core';
 
 interface MenuProps {
   data: MenuData;
