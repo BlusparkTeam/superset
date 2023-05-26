@@ -100,7 +100,7 @@ export default function ControlHeader({
             className={labelClass}
             style={{ cursor: onClick ? 'pointer' : '' }}
           >
-            {label}
+            {t(String(label))}
           </span>{' '}
           {warning && (
             <span>

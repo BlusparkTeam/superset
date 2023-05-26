@@ -51,6 +51,10 @@ services:
   superset:
     env_file: docker/.env
     image: *superset-image
+    build:
+      context: .
+      args:
+        NPM_BUILD_CMD: "dev"
     container_name: superset_app
     command: ["/app/docker/docker-bootstrap.sh", "app"]
     restart: unless-stopped

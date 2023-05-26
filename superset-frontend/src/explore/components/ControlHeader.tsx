@@ -148,7 +148,7 @@ const ControlHeader: FC<ControlHeaderProps> = ({
             onClick={onClick}
             style={{ cursor: onClick ? 'pointer' : '' }}
           >
-            {label}
+            {t(String(label))}
           </span>{' '}
           {warning && (
             <span>
