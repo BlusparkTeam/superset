@@ -1,12 +1,13 @@
-name: Release
+name: Develop
 
 on:
   push:
     branches:
-      - 'release-**'
+      - 'develop'
+
 jobs:
   shared:
     uses: BlusparkTeam/github-workflows/.github/workflows/build-deploy-superset.yaml@main
     secrets: inherit
     with:
-      environment: release
+      environment: develop
